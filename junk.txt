@@ -1,0 +1,213 @@
+<!--$number = mysqli_real_escape_string($db, $_POST['number']);
+                        $cmentor = mysqli_real_escape_string($db, $_POST['cmentor']);
+
+                         $q1 = "SELECT * FROM student WHERE BRANCH = '$branch' AND BATCH='$batch' AND ASSIGNED='0'";
+                         $res1 = mysqli_query($db, $q1);
+                          $n1 = mysqli_num_rows($res1);
+                        
+                        $nmq = "SELECT MID FROM mentor WHERE MNAME='$cmentor'";
+                        $nmres = mysqli_query($db, $nmq);
+                        $nmr = $nmres->fetch_assoc();
+                        for($i=0;$i<$number;$i++)
+                        {
+
+                            $row = mysqli_fetch_array($res1);
+                            $id = $row['SID'];
+                            $mname=$nmr['MID'];
+                            $nsq = "UPDATE student SET `MID`='$mname',`ASSIGNED`='1' WHERE `SID`='$id'";
+                            $run = mysqli_query($db, $nsq);
+                       }-->
+
+
+
+
+<!-- <button type="btn" class="btn btn-theme" style="text-align: center;margin:auto;
+  display:block;width: 200px;height: 40px;" name="view_sm">View Students And Mentor</button>
+</form>
+</form>
+</div>
+</div>
+</div>
+
+<div class="row mt">
+          <div class="col-lg-12">
+            <div class="form-panel" style="width: 80%;margin: auto;">
+              <h4 class="mb" align="center">Student And Faculty List</h4>
+              <form class="form-horizontal style-form" method="post">
+                  <?php
+                    if(isset($_POST['view_sm']))
+                    {
+                        $batch = mysqli_real_escape_string($db, $_POST['batch']);
+                        $branch = mysqli_real_escape_string($db, $_POST['branch']);
+
+                        $q = "SELECT * FROM student WHERE BRANCH = '$branch' AND BATCH='$batch'";
+                         $res = mysqli_query($db, $q);
+                          $n = mysqli_num_rows($res);
+                        $q1 = "SELECT * FROM student WHERE BRANCH = '$branch' AND BATCH='$batch' AND ASSIGNED='0'";
+                         $res1 = mysqli_query($db, $q1);
+                          $n1 = mysqli_num_rows($res1);
+                          $branch2="";
+                          if($branch=="IT" OR $branch=="CE")
+                          {
+                              if($branch=="IT")
+                              {
+                                  $branch2="CE";
+                              }
+                              else
+                              {
+                                $branch2="IT";
+                              }
+                              $mq = "SELECT * FROM mentor WHERE BRANCH = '$branch' OR BRANCH='$branch2' AND ASSIGNED='0'";
+                          }
+
+                         else
+                         {
+                          $mq = "SELECT * FROM mentor WHERE BRANCH = '$branch' AND ASSIGNED='0'";
+                         }
+                          $mres = mysqli_query($db, $mq);
+                          $mn = mysqli_num_rows($mres);
+
+                  ?>
+                    <form action="#" method="POST">
+                     <div class="form-group">
+                      <label class="col-sm-2 col-sm-2 control-label" style="font-size: 17px;">Total Students</label>
+                      <div class="col-sm-10">
+                        <input style="width: 50px;text-align: center;"type="text" class="form-control" required value="<?php echo $n;?>" name="num"  disabled>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-2 col-sm-2 control-label" style="font-size: 17px;">Unassinged Students</label>
+                      <div class="col-sm-10">
+                        <input style="width: 50px;text-align: center;"type="text" class="form-control" required value="<?php echo $n1;?>" name="num"  disabled>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label" style="font-size: 17px;margin-left: 15px;">Add number of Students to Assign to following Mentors : </label>
+                      <div class="col-sm-10">
+                         <input style="width: 50px;margin-top: -30px;margin-left: 450px;"type="text" class="form-control" required name="number">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="col-sm-10">
+                    <select class="form-control" name="cmentor" style="width: 167px;margin-left: 5px;">
+                    <option>Choose the Mentor</option>
+                    <?php
+                        for($i=0;$i<$mn;$i++)
+                        {
+                            $row = mysqli_fetch_array($mres);
+                            $id = $row['MNAME'];
+                    ?>
+                     <option><?php echo $id;?></option>
+                     <?php
+                        }
+                     ?>
+                </select>
+              </div>
+            </div>
+            <button type="btn" class="btn btn-theme" style="text-align: center;margin:auto;
+  display:block;width: 200px;height: 40px;" name="assign">Assign</button>
+              </form>
+              </form>
+            </div>
+          </div>
+           <?php
+                    }
+                  ?>
+                  <?php
+                    if(isset($_POST['assign']))
+                    {
+                          $number = mysqli_real_escape_string($db, $_POST['number']);
+                        $cmentor = mysqli_real_escape_string($db, $_POST['cmentor']);
+
+                         
+                        
+                        $nmq = "SELECT MID FROM mentor WHERE MNAME='$cmentor'";
+                        $nmres = mysqli_query($db, $nmq);
+                        $nmr = $nmres->fetch_assoc();
+                        for($i=0;$i<$number;$i++)
+                        {
+
+                            $row = mysqli_fetch_array($res1);
+                            $id = $row['SID'];
+                            $mname=$nmr['MID'];
+                            $nsq = "UPDATE student SET `MID`='$mname',`ASSIGNED`='1' WHERE `SID`='$id'";
+                            $run = mysqli_query($db, $nsq);
+                       }
+                ?>
+        </div>
+        <?php
+
+      }
+    }
+
+      ?>-->
+
+
+
+      <div class="form-group">
+                      <label class="col-sm-2 col-sm-2 control-label" style="font-size: 17px;">Total Students</label>
+                      <div class="col-sm-10">
+                        <input style="width: 50px;text-align: center;"type="text" class="form-control" required value="<?php echo $n;?>" name="num"  disabled>
+                      <label class="col-sm-2 col-sm-2 control-label" style="font-size: 17px;margin-top:-45px;margin-left: 150px;">Unassinged Students</label>
+                      <div class="col-sm-10">
+                        <input style="width: 50px;text-align: center;margin-top: -45px;margin-left: 300px;"type="text" class="form-control" required value="<?php echo $n1;?>" name="num"  disabled>
+                      </div>
+                    </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label" style="font-size: 17px;margin-left: 15px;">Add number of Students to Assign to following Mentors : </label>
+                      <div class="col-sm-10">
+                         <input style="width: 50px;margin-top: -30px;margin-left: 450px;"type="text" class="form-control" required name="number">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="col-sm-10">
+                    <select class="form-control" name="cmentor" style="width: 167px;margin-left: 5px;">
+                    <option>Choose the Mentor</option>
+                    <?php
+                        for($i=0;$i<$mn;$i++)
+                        {
+                            $row = mysqli_fetch_array($mres);
+                            $id = $row['MNAME'];
+                    ?>
+                     <option><?php echo $id;?></option>
+                     <?php
+                        }
+                     ?>
+                </select>
+              </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+            <!--<div class="row mt">
+          <div class="col-lg-12">
+          <div style="width: 700px;height: 80vh;background: #FFF;border-radius: 10px;margin: auto;">
+            <div id="chat-title" style="display:grid;background:  #4ECDC4;width: 700px;height: 65px;border-radius: 10px 10px 0px 0px;font-weight: bold;font-size: 2.0rem;box-shadow: 0 1px 3px -1px rgba(0,0,0,0.75);align-items: center;align-content: center;padding: 0 20px;text-align: center;color: #f2f2f2;">
+                  <span><?php if(!empty($_SESSION['student'])){
+                    $query = "SELECT * FROM student WHERE SID = '$student'";
+                    $run = mysqli_query($db, $query);
+                    $ro = $run->fetch_assoc();
+                    echo $student;echo " - ";echo $ro['SNAME'];
+                  }?></span>
+                  </div>
+                  <div style="display: flex;flex-direction: column;padding: 0 20px;overflow-y: scroll:display:none;background: #f2f2f2;height: 450px;">
+
+
+
+                  </div>
+              <?php
+
+                }
+            ?>
+          </div>
+          </div>
+          </div>-->
